@@ -1,0 +1,18 @@
+{% extends 'nekotter/base.html' %}
+{% block body %}
+
+{% for list in lists %}
+<div class="message clearfix">
+  画像
+  <div class="message_box">
+    <p class="user_name">
+      野良猫1号
+    </p>
+    <p class="text">
+      {{list.tweet}}
+    </p>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
