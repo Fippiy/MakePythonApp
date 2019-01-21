@@ -3,7 +3,8 @@
 
 {% for list in lists %}
 <div class="message clearfix">
-  画像
+  {% load static %}
+  <img src="{% static 'nekotter/images/cat1.png' %}">
   <div class="message_box">
     <p class="user_name">
       野良猫1号

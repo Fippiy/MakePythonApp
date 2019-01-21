@@ -1,0 +1,17 @@
+{% extends 'nekotter/base.html' %}
+{% block body %}
+
+<div class="contents">
+<h2>投稿する</h2>
+  <form action="" method="post">
+    {% load static %}
+    <img src="{% static 'nekotter/images/cat1.png' %}">
+    <textarea rows="4" cols="40" name="word"></textarea>
+    <div class="button-box">
+      <input type="submit" class="submit-button">
+    </div>
+    {% csrf_token %}
+  </form>
+</div>
+
+{% endblock %}

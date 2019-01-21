@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head></head>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'nekotter/css/style.css' %}">
+</head>
 <body>
+<header>
+  <h1>ねこったー</h1>
+  <a class="right" href="./new">投稿する</a>
+</header>
 
   {% block body %}
   {% endblock %}
