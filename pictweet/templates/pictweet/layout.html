@@ -2,9 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Pictweet</title>
-<!--     {% load sass_tags %}
-    <link rel="stylesheet" href="{% sass_src 'pictweet/css/style.scss' %}" type="text/css"> -->
+    <title>Pictweet powerd by python</title>
+<!-- sass読み込み -->
+    {% load sass_tags %}
+    <link rel="stylesheet" href="{% sass_src 'pictweet/css/style.scss' %}" type="text/css">
+
+<!-- rails-pictweetのjavascript -->
 <!--     <script type="text/javascript">
       WebFontConfig = {
         google: { families: [ 'Unica+One::latin' ] }
@@ -22,68 +25,52 @@
   </head>
 
   <body>
-    pictweet/layout.html
-<!--     {% if request.user.is_authenticated %}
-      true
-    {% else %}
-      false
-    {% endif %}
- -->
     <header class="header">
       <div class="header__bar row">
         <h1 class="grid-6"><a href="./">PicTweet</a></h1>
-
-        <!-- <% if user_signed_in? %> -->
         <!-- サインイン判定 -->
-    {% if request.user.is_authenticated %}
-      true
+        {% if request.user.is_authenticated %}
+        <!-- true -->
           <div class="user_nav grid-6">
 
-
-            <span><!-- <%= current_user.nickname %> -->
-              <!-- ログインユーザ名 -->
-
+            <!-- ログインユーザ名 -->
+            <span>{{ user.get_username }}<!-- username -->
               <ul class="user__info">
                 <li>
-                  <!-- <a href="/users/<%= current_user.id %>">マイページ</a> -->
-                  <!-- マイページ遷移ぼたん -->
 
-                  <!-- <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> -->
+                  <!-- マイページリンク -->
+                  <!-- <a href="/users/<%= current_user.id %>">マイページ</a> -->
+                  <a>マイページ</a>
+
                   <!-- ログアウト -->
+                  <!-- <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> -->
                   <a href="../accounts/logout/">ログアウト</a>
 
                 </li>
               </ul>
             </span>
 
-            <!-- <a class="post" href="/tweets/new">投稿する</a> -->
             <!-- 投稿ボタン -->
+            <!-- <a class="post" href="/tweets/new">投稿する</a> -->
             <a href="./new/">投稿する</a>
 
           </div>
 
-<!--         <% else %>
-        ifのelse
- -->
-    {% else %}
-      false
+        <!-- ifのelse -->
+        {% else %}
 
           <div class="grid-6">
 
-            <!-- <%= link_to "ログイン", new_user_session_path, :class => 'post' %> -->
             <!-- ログインボタン -->
             <a href="../accounts/login/">ログイン</a>
 
-            <!-- <%= link_to "新規登録", new_user_registration_path, :class => 'post' %> -->
             <!-- 新規登録ボタン -->
             <a href="../accounts/signup/">新規登録</a>
 
-
           </div>
 
-        <!-- <% end %> -->
         <!-- ifの終了 -->
-    {% endif %}
+        {% endif %}
 
       </div>
     </header>
