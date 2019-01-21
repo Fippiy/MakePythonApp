@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import pictweet_tweet
 
-def index(request):
-  return HttpResponse('<p>test</p>')
+from django.contrib.auth.models import User, AnonymousUser
+
+# def index(request):
+#   return HttpResponse('<p>test</p>')
 
 def index(request):
   tweet_list = pictweet_tweet.objects.all()
@@ -11,6 +13,13 @@ def index(request):
   'lists': tweet_list,
   }
   return render(request, 'pictweet/index.html', context)
+
+  # if request.user.is_authenticated():
+  # if request.user == AnonymousUser():
+  #   test = "test"
+  # else:
+  #   test = "test"
+
 
 # def new(request):
 #   if request.method == 'POST':

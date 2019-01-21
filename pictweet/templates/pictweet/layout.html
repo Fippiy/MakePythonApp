@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pictweet</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pictweet/css/style.css' %}">
+<!--     <script type="text/javascript">
+      WebFontConfig = {
+        google: { families: [ 'Unica+One::latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script> -->
+  </head>
+
+  <body>
+    pictweet/layout.html
+<!--     {% if request.user.is_authenticated %}
+      true
+    {% else %}
+      false
+    {% endif %}
+ -->
+    <header class="header">
+      <div class="header__bar row">
+        <h1 class="grid-6"><a href="./">PicTweet</a></h1>
+
+        <!-- <% if user_signed_in? %> -->
+        <!-- サインイン判定 -->
+    {% if request.user.is_authenticated %}
+      true
+          <div class="user_nav grid-6">
+
+
+            <span><!-- <%= current_user.nickname %> -->
+              <!-- ログインユーザ名 -->
+
+              <ul class="user__info">
+                <li>
+                  <!-- <a href="/users/<%= current_user.id %>">マイページ</a> -->
+                  <!-- マイページ遷移ぼたん -->
+
+                  <!-- <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> -->
+                  <!-- ログアウト -->
+                  <a href="../accounts/logout/">ログアウト</a>
+
+                </li>
+              </ul>
+            </span>
+
+            <!-- <a class="post" href="/tweets/new">投稿する</a> -->
+            <!-- 投稿ボタン -->
+
+          </div>
+
+<!--         <% else %>
+        ifのelse
+ -->
+    {% else %}
+      false
+
+          <div class="grid-6">
+
+            <!-- <%= link_to "ログイン", new_user_session_path, :class => 'post' %> -->
+            <!-- ログインボタン -->
+            <a href="../accounts/login/">ログイン</a>
+
+            <!-- <%= link_to "新規登録", new_user_registration_path, :class => 'post' %> -->
+            <!-- 新規登録ボタン -->
+            <a href="../accounts/signup/">新規登録</a>
+
+
+          </div>
+
+        <!-- <% end %> -->
+        <!-- ifの終了 -->
+    {% endif %}
+
+      </div>
+    </header>
+    {% block body %}
+    {% endblock %}
+    <footer>
+      <p>
+        Copyright PicTweet 2014.
+      </p>
+    </footer>
+  </body>
+</html>
