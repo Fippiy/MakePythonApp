@@ -4,6 +4,8 @@ from .models import pictweet_tweet
 
 from django.contrib.auth.models import User, AnonymousUser
 
+from django.utils import timezone
+
 # def index(request):
 #   return HttpResponse('<p>test</p>')
 
@@ -21,15 +23,27 @@ def index(request):
   #   test = "test"
 
 
-# def new(request):
-#   if request.method == 'POST':
-#     msg = nekotter_text.objects.create(tweet=request.POST['word'])
-#     msg.save()
-#     return redirect(to="/nekotter")
-#   return render(request, 'nekotter/new.html')
+def new(request):
+  if request.method == 'POST':
+    msg = pictweet_tweet.objects.create(
+      name=request.POST['name'],
+      text=request.POST['text'],
+      image=request.POST['image'],
+      date_time=timezone.datetime.now()
+      )
+    msg.save()
+    return redirect(to="/pictweet")
+  return render(request, 'pictweet/new.html')
+
+# class pictweet_tweet(models.Model):
+#   name = models.TextField()
+#   text = models.TextField()
+#   image = models.TextField()
+#   date_time = models.DateTimeField()
 
 
 
+# ログイン関連
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic

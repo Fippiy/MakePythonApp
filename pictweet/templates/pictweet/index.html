@@ -4,8 +4,8 @@
 pictweet/index.html<br>
 
 {% for list in lists %}
-  {{list.name}}
-  {{list.text}}
+  <p>{{list.name}}</p>
+  <span>{{list.text}}</span>
   {{list.image}}
   {{list.date_time}}
 {% endfor %}
