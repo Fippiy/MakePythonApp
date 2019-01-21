@@ -1,0 +1,13 @@
+{% extends 'testapp/base.html' %}
+{% block body %}
+
+<!-- フォーム -->
+
+  <form action="" method="post">
+    <label>メッセージ：<input type="text" size="20" name="word"></label>
+    <input type="submit" value="送信">
+    {% csrf_token %}
+  </form>
+<!-- (このあと投稿処理) -->
+{{msg}}
+{% endblock %}
