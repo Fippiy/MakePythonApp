@@ -1,9 +1,11 @@
+pictweet/login.html
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
+
 {% block content %}
 <h1>Login</h1>
-<div class="contents row">
+<section class="common-form">
     {% if form.errors %}
     <p class="error-msg">Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -22,6 +24,6 @@
         {{ form.as_p }}
         <button type="submit" class="submit">Login</button>
         <input type="hidden" name="next" value="{{ next }}"/>
-</form>
-</div>
+    </form>
+</section>
 {% endblock %}

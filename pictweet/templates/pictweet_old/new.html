@@ -1,0 +1,33 @@
+{% extends 'pictweet/layout.html' %}
+{% block body %}
+
+<div class="contents row">
+  <div class="container">
+    <form action="" method="post">
+      <h3>
+        投稿する
+      </h3>
+      <input placeholder="name" type="text" name="name">
+      <input placeholder="Image URL" type="text" name="image" autofocus="true">
+      <textarea placeholder="text" name="text" cols="30" rows="10"></textarea>
+      <input type="submit" value="SENT">
+    {% csrf_token %}
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="contents">
+<h2>投稿する</h2>
+  <form action="" method="post">
+    {% load static %}
+    <img src="{% static 'nekotter/images/cat1.png' %}">
+    <textarea rows="4" cols="40" name="word"></textarea>
+    <div class="button-box">
+      <input type="submit" class="submit-button">
+    </div>
+    {% csrf_token %}
+  </form>
+</div> -->
+
+{% endblock %}

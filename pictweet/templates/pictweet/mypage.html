@@ -1,0 +1,19 @@
+{% extends 'pictweet/layout.html' %}
+{% block body %}
+
+<div class="contents row" >
+
+  {% for user in userinfo %}
+  <p>{{user.username}}さんの投稿一覧</p>
+  {% endfor %}
+
+
+  {% for list in lists %}
+    <div class="content_post" style="background-image: url({{list.image}});">
+      <p>{{list.text}}</p>
+    </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

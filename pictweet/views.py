@@ -1,27 +1,27 @@
+# ログイン関連
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+class SignUpView(generic.CreateView):
+      form_class = UserCreationForm
+      success_url = reverse_lazy('login')
+      template_name = 'accounts/signup.html'
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import pictweet_tweet
-
-from django.contrib.auth.models import User, AnonymousUser
-
+from django.contrib.auth.models import User
 from django.utils import timezone
 
 # def index(request):
 #   return HttpResponse('<p>test</p>')
 
 def index(request):
-  tweet_list = pictweet_tweet.objects.all()
+  tweet_list = pictweet_tweet.objects.all().order_by('id').reverse()
   context = {
   'lists': tweet_list,
   }
   return render(request, 'pictweet/index.html', context)
-
-  # if request.user.is_authenticated():
-  # if request.user == AnonymousUser():
-  #   test = "test"
-  # else:
-  #   test = "test"
-
 
 def new(request):
   if request.method == 'POST':
@@ -29,26 +29,46 @@ def new(request):
       name=request.POST['name'],
       text=request.POST['text'],
       image=request.POST['image'],
-      date_time=timezone.datetime.now()
+      date_time=timezone.datetime.now(),
+      user_id = request.user.id
       )
     msg.save()
     return redirect(to="/pictweet")
   return render(request, 'pictweet/new.html')
 
-# class pictweet_tweet(models.Model):
-#   name = models.TextField()
-#   text = models.TextField()
-#   image = models.TextField()
-#   date_time = models.DateTimeField()
+def mypage(request,num):
+  tweet_lists = pictweet_tweet.objects.all().filter(user_id=num)
+  userinfo = User.objects.all().filter(id=num)
+  context = {
+    'lists': tweet_lists,
+    'userinfo': userinfo
+  }
+  return render(request, 'pictweet/mypage.html', context)
 
+def delete(request,num):
+  pictweet_tweet.objects.filter(id=num).delete()
+  return redirect(to="/pictweet")
 
+def edit(request,num):
+  if request.method == 'POST':
+    msg = pictweet_tweet.objects.create(
+      name=request.POST['name'],
+      text=request.POST['text'],
+      image=request.POST['image'],
+      date_time=timezone.datetime.now(),
+      user_id = request.user.id
+      )
+    msg.save()
+    return redirect(to="/pictweet")
+  tweet = pictweet_tweet.objects.filter(id=num)
+  context = {
+    'tweets': tweet,
+  }
+  return render(request, 'pictweet/edit.html', context)
 
-# ログイン関連
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views import generic
-
-class SignUpView(generic.CreateView):
-      form_class = UserCreationForm
-      success_url = reverse_lazy('login')
-      template_name = 'accounts/signup.html'
+def show(request,num):
+  tweet = pictweet_tweet.objects.filter(id=num)
+  context = {
+  'lists': tweet,
+  }
+  return render(request, 'pictweet/index.html', context)

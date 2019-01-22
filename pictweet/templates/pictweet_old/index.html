@@ -1,0 +1,68 @@
+{% extends 'pictweet/layout.html' %}
+
+<!-- ブロック部 -->
+{% block body %}
+{% load static %}
+
+<div class="contents row">
+
+
+<!-- 繰り返しlistsの中をだす -->
+{% for list in lists %}
+
+<!-- backgroundイメージ -->
+<div class="content_post" style="background-image: url({{list.image}});">
+
+  <!-- ログインユーザか判定 -->
+  <!-- <% if user_signed_in? && current_user.id == tweet.user_id %> -->
+
+    <!-- <div class="more"> -->
+      <!-- arrowタグ -->
+      <!-- <span><%= image_tag 'arrow_top.png' %></span> -->
+      <!-- <span><img src="{% static 'pictiweet/images/arrow_top.png' %}"></span> -->
+      <!-- <ul class="more_list"> -->
+        <!-- <li> -->
+          <!-- 詳細ページリンク -->
+          <!-- <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %> -->
+          <!-- <a>詳細</a> -->
+        <!-- </li> -->
+        <!-- 投稿者本人か判定 -->
+        <!-- <% if user_signed_in? && current_user.id == tweet.user_id %> -->
+          <!-- <li> -->
+            <!-- 投稿編集 -->
+            <!-- <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get %> -->
+            <!-- <a>編集</a> -->
+          <!-- </li> -->
+          <!-- <li> -->
+            <!-- 投稿削除 -->
+            <!-- <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %> -->
+            <!-- <a>削除</a> -->
+          <!-- </li> -->
+        <!-- 投稿者本人判定ifのend -->
+        <!-- <% end %> -->
+      <!-- </ul> -->
+    <!-- </div> -->
+  <!-- ログインユーザ判定のend -->
+  <!-- <% end %> -->
+
+    <!-- 投稿記事 -->
+    <!-- <%= simple_format(tweet.text) %> -->
+    <p>{{list.text}}</p>
+
+  <span class="name">
+    <!-- 記事投稿者名表示 -->
+    <span>{{list.name}}</span>
+
+<!--     <a href="/users/<%= tweet.user_id %>">
+      <span>投稿者</span><%= tweet.user.nickname %>
+    </a> -->
+  </span>
+</div>
+
+
+{% endfor %}
+<!-- 繰り返し終わり -->
+</div>
+
+{% endblock %}
+<!-- ブロック部 -->

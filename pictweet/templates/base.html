@@ -1,20 +1,8 @@
-<html lang="en">
-<head>
-<link rel="stylesheet" href="style.css" />
-<title>{% block title %}My site{% endblock %}</title>
-</head>
-
-<body>
-<div id="sidebar">
+{% extends 'pictweet/layout.html' %}
+{% block body %}
 {% block sidebar %}
-<ul>
-<li><a href="../../pictweet">Home</a></li>
-</ul>
 {% endblock %}
-</div>
-
-<div id="content">
 {% block content %}{% endblock %}
-</div>
-</body>
-</html>
+{% endblock %}
+
+
