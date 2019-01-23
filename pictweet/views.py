@@ -13,13 +13,20 @@ from .models import pictweet_tweet
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from django.contrib.auth import get_user_model
 # def index(request):
 #   return HttpResponse('<p>test</p>')
 
 def index(request):
   tweet_list = pictweet_tweet.objects.all().order_by('id').reverse()
+  # UserModel = get_user_model()
+  # user_list = Article.objects.all()
+  # context = {
+  # 'lists': tweet_list,
+  # 'users': UserModel,
+  # }
   context = {
-  'lists': tweet_list,
+    'lists': tweet_list
   }
   return render(request, 'pictweet/index.html', context)
 
@@ -72,3 +79,7 @@ def show(request,num):
   'lists': tweet,
   }
   return render(request, 'pictweet/index.html', context)
+
+def redirect_top(request):
+  return redirect(to="/pictweet")
+  # return HttpResponse('<p>error</p>')

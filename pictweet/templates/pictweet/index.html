@@ -10,15 +10,15 @@
     <div class="more">
       <span><img src="{% static "pictweet/images/arrow_top.png" %}"></span>
       <ul class="more_list">
-        <li><a href="/pictweet/show/{{list.id}}">詳細</a></li>
-        <li><a href="/pictweet/edit/{{list.id}}">編集</a></li>
-        <li><a href="/pictweet/delete/{{list.id}}">削除</a></li>
+        <li><a href="{% url 'show' %}{{list.id}}">詳細</a></li>
+        <li><a href="{% url 'edit' %}{{list.id}}">編集</a></li>
+        <li><a href="{% url 'delete' %}{{list.id}}">削除</a></li>
       </ul>
     </div>
     {% endif %}
     <p>{{list.text}}</p>
     <span class="name">
-      <a href="/pictweet/mypage/{{list.user_id}}">
+      <a href="{% url 'mypage' %}{{list.user_id}}">
         <span>投稿者</span>{{list.name}}
       </a>
     </span>

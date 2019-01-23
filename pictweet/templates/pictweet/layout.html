@@ -23,14 +23,14 @@
   <body>
     <header class="header">
       <div class="header__bar row">
-        <h1 class="grid-6"><a href="http://127.0.0.1:8000/pictweet/">PicTweet</a></h1>
+        <h1 class="grid-6"><a href="{% url 'index' %}">PicTweet</a></h1>
         {% if user.is_authenticated %}
           <div class="user_nav grid-6">
             <span>{{ user.username }}
               <ul class="user__info">
                 <li>
-                  <a href="./mypage/{{user.id}}" class="post">マイページ</a>
-                  <a href="../accounts/logout/" class="post">ログアウト</a>
+                  <a href="{% url 'mypage' %}{{user.id}}">マイページ</a>
+                  <a href="{% url 'logout' %}">ログアウト</a>
                 </li>
               </ul>
             </span>
@@ -38,8 +38,8 @@
           </div>
         {% else %}
           <div class="grid-6">
-            <a href="../accounts/login/" class="post">ログイン</a>
-            <a href="../accounts/signup/" class="post">新規登録</a>
+            <a href="{% url 'login' %}" class="post">ログイン</a>
+            <a href="{% url 'accounts:signup' %}" class="post">新規登録</a>
           </div>
         {% endif %}
       </div>

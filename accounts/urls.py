@@ -1,3 +1,4 @@
+from django.conf.urls import url, include
 from django.urls import path
 from . import views
 
@@ -6,5 +7,6 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-  path('signup/', views.SignUpView.as_view(), name='signup'),
+  # path('signup/', views.SignUpView.as_view(), name='signup'),
+  url(r'^signup/$', views.SignUpView.as_view(), name='signup'),
 ]
